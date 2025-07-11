@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Examen 2do Parcial</title>
+  </head>
+  <body>
+    <section>
+      <h2>Peliculas</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>id:</th>
+            <th>Título:</th>
+            <th>Director:</th>
+            <th>Género:</th>
+            <th>Año de lanzamiento:</th>
+            <th>Editar:</th>
+            <th>Eliminar:</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for pelicula in peliculas %} {% if pelicula.estado %}
+          <tr>
+            <td>{{ pelicula.id }}</td>
+            <td>{{ pelicula.titulo }}</td>
+            <td>{{ pelicula.director }}</td>
+            <td>{{ pelicula.genero }}</td>
+            <td>{{ pelicula.fecha_lanzamiento }}</td>
+            <td>
+              <a href="{{ url_for('editar', id=pelicula.id) }}">Editar</a>
+            </td>
+            <td>
+              <a href="{{ url_for('eliminar', id=pelicula.id) }}">Eliminar</a>
+            </td>
+          </tr>
+          {% endif %} {% endfor %}
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Registrar película</h2>
+      <form action="{{ url_for('registrar_pelicula') }}" method="POST">
+        <input type="text" name="titulo" placeholder="Titulo" />
+        <input type="text" name="director" placeholder="Director" />
+        <input type="text" name="genero" placeholder="Género" />
+        <input type="number" name="fecha" placeholder="Año de lanzamiento" />
+        <br />
+        <button type="submit">Guardar película</button>
+      </form>
+    </section>
+    {% with mensajes = get_flashed_messages(with_categories=true) %} {% if
+    mensajes %} {% for categoria, mensaje in mensajes %}
+    <p>{{ mensaje }}</p>
+    {% endfor %} {% endif %} {% endwith %}
+    <br /><br /><br />
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eliminar película</title>
+  </head>
+  <body>
+    <h2>¿Estás seguro de que deseas eliminar "{{ pelicula.titulo }}"?</h2>
+    <form action="{{ url_for('eliminar_pelicula', id=pelicula.id ) }}">
+      <input type="text" name="titulo" value="{{ pelicula.titulo }}" disabled />
+      <input
+        type="text"
+        name="director"
+        value="{{ pelicula.director }}"
+        disabled
+      />
+      <input type="text" name="genero" value="{{ pelicula.genero }}" disabled />
+      <input
+        type="number"
+        name="fecha"
+        value="{{ pelicula.fecha_lanzamiento }}"
+        placeholder="Año de lanzamiento"
+        disabled
+      />
+      <br />
+      <button type="submit">Eliminar película</button>
+    </form>
+  </body>
+</html>

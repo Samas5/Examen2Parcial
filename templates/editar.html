@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar</title>
+  </head>
+  <body>
+    <h2>Editar película</h2>
+    <form
+      action="{{ url_for('editar_pelicula', id=pelicula.id ) }}"
+      method="POST"
+    >
+      <input
+        type="text"
+        name="titulo"
+        placeholder="Titulo"
+        value="{{ pelicula.titulo }}"
+      />
+      <input
+        type="text"
+        name="director"
+        placeholder="Director"
+        value="{{ pelicula.director }}"
+      />
+      <input
+        type="text"
+        name="genero"
+        placeholder="Género"
+        value="{{ pelicula.genero }}"
+      />
+      <input
+        type="number"
+        name="fecha"
+        placeholder="Año de lanzamiento"
+        value="{{ pelicula.fecha_lanzamiento }}"
+      />
+      <br />
+      <button type="submit">Editar película</button>
+    </form>
+    {% with mensajes = get_flashed_messages(with_categories=true) %} {% if
+    mensajes %} {% for categoria, mensaje in mensajes %}
+    <p>{{ mensaje }}</p>
+    {% endfor %} {% endif %} {% endwith %}
+    <br /><br /><br />
+  </body>
+</html>
